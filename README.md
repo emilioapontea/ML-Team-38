@@ -1,4 +1,4 @@
-# ML-Team-38
+# Team 38: Shoe Pricing Model
 
 ## Introduction & Background
 
@@ -49,5 +49,5 @@ Because we are creating an image regression model, we can use a variety of evalu
 
 ## Video & Presentation
 
-- [Video]()
+- [Video](https://youtu.be/ipoQmIiKBfM)
 - [Presentation](https://docs.google.com/presentation/d/1QrepxgSp1oowxFkXETYxBXCTLJOTINg0yjObIau99ds/edit?usp=sharing)

@@ -11,13 +11,11 @@ Our idea is to go from image to price, which is a continuous value. The approach
 ## Potential Results and Discussion
 
 ## Contribution Table
-| **Person**     | **Contribution**                                  |
-| -------------- | ------------------------------------------------- |
-| Brandon Harris | Report - Timeline & Contribution Table            |
-| Emilio Ayonte  | Report - Introduction & Background                |
-| Samrat Sahoo   | Video & Slides                                    |
-| Tawsif Kamal   | Report - Potential Methods                        |
-| Victor Guyard  | Report - Potential Results / Discussion & Sources |
+- Brandon Harris: Report - Timeline & Contribution Table            
+- Emilio Ayonte: Report - Introduction & Background                
+- Samrat Sahoo: Video & Slides                                    
+- Tawsif Kamal: Report - Potential Methods                        
+- Victor Guyard: Report - Potential Results / Discussion & Sources 
 
 ## Timeline
 

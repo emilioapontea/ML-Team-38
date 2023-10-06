@@ -32,6 +32,13 @@ Because we are creating an image regression model, we can use a variety of evalu
 - Week 8: We will write up our results in a final report (as outlined in the syllabus for this class)
 - Week 9: We will complete our write-up and submit this final report. 
 
+Responsibilties: Most responsibilties will be shared with each other but each responsibility has an "owner" who is responsibile for ensuring that task gets done. The owners are as follows:
+- Brandon: Midterm & Final Reports, Finetuning Model Hyperparameters
+- Emilio: Midterm & Final Reports, Evaluating Models
+- Samrat: Midterm & Final Reports, Creating CLI/UI Tool for Model Inference 
+- Tawsif: Midterm & Final Reports, Creating Image to Regression Data and Model Pipelines
+- Victor: Midterm & Final Reports, Webscraping Data
+
 ## Potential Datasets
 - https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices
 - https://www.kaggle.com/datasets/thedevastator/analyzing-trending-men-s-shoe-prices-with-datafi

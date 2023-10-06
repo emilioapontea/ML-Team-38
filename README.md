@@ -22,6 +22,16 @@ Because we are creating an image regression model, we can use a variety of evalu
 
 ## Timeline
 
+- Week 1: We will spend this week doing some initial data collection - this is both through Kaggle as well as some initial web scraping to gather all the images.
+- Week 2: We will spend this week preparing the data - this means cleaning the data (i.e., ensuring all our images are shoes facing the right side), preprocessing it as necessary (i.e., applying any necessary preprocessing or augmentation steps to ensure consistent data with the models), and organizing the dataset (mapping images to prices).
+- Week 3: We will spend this week selecting some pre-trained CNNs like the ones mentioned above and ensuring we are able to run the models on our data. We are essentially setting up the data and machine learning model pipelines this week.
+- Week 4: We will spend this week training and finetuning our models by optimizing the hyperparameters. We will also start writing the midpoint report for this project.
+- Week 5: We will spend this week evaluating the models with the aforementioned metrics in the report. 
+- Week 6: After going through the results, we will decide whether further improvement is necessary. If so, we will continue to determine weak points of our models or methodology to optimize our model’s performance further.
+- Week 7: We will create a proof of concept CLI-based or UI tool to enable people to utilize our trained model in an easy manner.
+- Week 8: We will write up our results in a final report (as outlined in the syllabus for this class)
+- Week 9: We will complete our write-up and submit this final report. 
+
 ## Potential Datasets
 - https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices
 - https://www.kaggle.com/datasets/thedevastator/analyzing-trending-men-s-shoe-prices-with-datafi

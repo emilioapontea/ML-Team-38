@@ -15,7 +15,7 @@ Because we are creating an image regression model, we can use a variety of evalu
 
 ## Contribution Table
 - Brandon Harris: Report - Timeline & Contribution Table            
-- Emilio Ayonte: Report - Introduction & Background                
+- Emilio Aponte: Report - Introduction & Background                
 - Samrat Sahoo: Video & Slides                                    
 - Tawsif Kamal: Report - Potential Methods                        
 - Victor Guyard: Report - Potential Results / Discussion & Sources 

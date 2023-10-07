@@ -38,8 +38,7 @@ Responsibilties: Most responsibilties will be shared with each other but each re
 - Samrat: Midterm & Final Reports, Creating CLI/UI Tool for Model Inference 
 - Tawsif: Midterm & Final Reports, Creating Image to Regression Data and Model Pipelines
 - Victor: Midterm & Final Reports, Webscraping Data
-  Responsibility Chart / Timeline Link: https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBvZ0qsAhBCuHuLwd_VBt9FA?e=P1d61p
-
+  Responsibility Chart / Timeline Link: https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=KmIHY7
 ## Potential Datasets
 - https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices
 - https://www.kaggle.com/datasets/thedevastator/analyzing-trending-men-s-shoe-prices-with-datafi

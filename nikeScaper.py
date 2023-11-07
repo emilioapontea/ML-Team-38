@@ -19,6 +19,8 @@ def gatherRowData(jsonData, prevData=nikePrices):
     for each in jsonData:
         price = str(each.get("price").get("fullPrice"))
         portraitURL = each.get("images").get("portraitURL")
+        if "c_limit,w_400,f_auto" in portraitURL:
+            portraitURL = portraitURL.replace("c_limit,w_400,f_auto/", "")
         # print(type(price))
         if price not in prevData.keys():
             prevData[price] = [portraitURL]
@@ -28,15 +30,19 @@ def gatherRowData(jsonData, prevData=nikePrices):
 def collectData(url):
     req = requests.get(url, headers="")
     data = req.json().get("data").get("products").get("products")
-    count = 0
+    count = 00
     while (data != None):
         gatherRowData(jsonData=data)
 
         count += 24
         url = url.replace("anchor%3D{}".format(
             count-24), "anchor%3D{}".format(count))
+        print(url)
         req = requests.get(url, headers="")
         data = req.json().get("data").get("products").get("products")
+
+        with open("nikePrices.json", "w") as jsonFile:
+            json.dump(nikePrices, jsonFile, indent=2)
 
 
 collectData(womenURL)

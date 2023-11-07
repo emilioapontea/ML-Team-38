@@ -1,0 +1,39 @@
+name: ml_project
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - bzip2=1.0.8=h93a5062_5
+  - ca-certificates=2023.7.22=hf0a4a13_0
+  - freetype=2.12.1=hadb7bae_2
+  - lcms2=2.15=hf2736f0_3
+  - lerc=4.0.0=h9a09cb3_0
+  - libcxx=16.0.6=h4653b0c_0
+  - libdeflate=1.19=hb547adb_0
+  - libexpat=2.5.0=hb7217d7_1
+  - libffi=3.4.2=h3422bc3_5
+  - libjpeg-turbo=3.0.0=hb547adb_1
+  - libpng=1.6.39=h76d750c_0
+  - libsqlite=3.44.0=h091b4b1_0
+  - libtiff=4.6.0=ha8a6c65_2
+  - libwebp-base=1.3.2=hb547adb_0
+  - libxcb=1.15=hf346824_0
+  - libzlib=1.2.13=h53f4e23_5
+  - ncurses=6.4=h463b476_2
+  - openjpeg=2.5.0=h4c1507b_3
+  - openssl=3.1.4=h0d3ecfb_0
+  - pillow=10.1.0=py312hac22aec_0
+  - pip=23.3.1=pyhd8ed1ab_0
+  - pthread-stubs=0.4=h27ca646_1001
+  - python=3.12.0=h47c9636_0_cpython
+  - python_abi=3.12=4_cp312
+  - readline=8.2=h92ec313_1
+  - setuptools=68.2.2=pyhd8ed1ab_0
+  - tk=8.6.13=h5083fa2_1
+  - tzdata=2023c=h71feb2d_0
+  - wheel=0.41.3=pyhd8ed1ab_0
+  - xorg-libxau=1.0.11=hb547adb_0
+  - xorg-libxdmcp=1.1.3=h27ca646_0
+  - xz=5.2.6=h57fd34a_0
+  - zstd=1.5.5=h4f39d0f_0
+prefix: /Users/victorguyard/miniconda3/envs/ml_project

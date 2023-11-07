@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-dataset_folder = 'path_to_your_dataset_folder'
+dataset_folder = './dataset'
 
 imageTypes = [".jpg", ".jpeg", ".png"]
 

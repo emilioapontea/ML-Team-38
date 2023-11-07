@@ -7,21 +7,28 @@ womenURL = "https://api.nike.com/cic/browse/v2?queryid=products&anonymousId=A140
 
 nikePrices = {}
 
-def gatherRowData(jsonData):
-    for each in jsonData:
-        price = each.get("price").get("fullPrice")
-        portraitURL = each.get("images").get("portraitURL")
+if os.path.exists("nikePrices.json") and os.path.getsize("nikePrices.json") > 0:
+    with open("nikePrices.json", "r") as jsonFile:
+        nikePrices = json.load(jsonFile)
+else:
+    print("File is empty or does not exist")
 
-        if price in nikePrices:
-            print(portraitURL)
-            nikePrices[price].append(portraitURL)
-        else:
-            nikePrices[price] = [portraitURL]
+print(nikePrices)
+
+def gatherRowData(jsonData, prevData=nikePrices):
+    for each in jsonData:
+        price = str(each.get("price").get("fullPrice"))
+        portraitURL = each.get("images").get("portraitURL")
+        # print(type(price))
+        if price not in prevData.keys():
+            prevData[price] = [portraitURL]
+        elif portraitURL not in prevData[price]:
+            prevData[price].append(portraitURL)  # Append to the existi
 
 def collectData(url):
     req = requests.get(url, headers="")
     data = req.json().get("data").get("products").get("products")
-    count = 00
+    count = 0
     while (data != None):
         gatherRowData(jsonData=data)
 
@@ -35,12 +42,5 @@ def collectData(url):
 collectData(womenURL)
 collectData(menURL)
 
-if os.path.exists("nikePrices.json"):
-    with open("nikePrices.json", "r+") as jsonFile:
-        data = json.load(jsonFile)
-        data.update(nikePrices)
-        jsonFile.seek(0)
-        json.dump(data, jsonFile, indent=2)
-else:
-    with open("nikePrices.json", "w") as jsonFile:
-        json.dump(nikePrices, jsonFile, indent=2)
+with open("nikePrices.json", "w") as jsonFile:
+    json.dump(nikePrices, jsonFile, indent=2)

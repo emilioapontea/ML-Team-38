@@ -24,7 +24,8 @@ def gatherRowData(jsonData, prevData=nikePrices):
         if "images/" in portraitURL and "/t_product_v1" in portraitURL:
             start = portraitURL.find("images/") + len("images/")
             end = portraitURL.find("/t_product_v1")
-            portraitURL = portraitURL.replace(portraitURL[start:end], "")
+            portraitURL = portraitURL.replace(portraitURL[start:end+1], "")
+            print(portraitURL)
         # print(type(price))
         if price not in prevData.keys():
             prevData[price] = [portraitURL]

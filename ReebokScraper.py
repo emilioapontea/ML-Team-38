@@ -13,7 +13,7 @@ if os.path.exists(reebokFile) and os.path.getsize(reebokFile) > 0:
 else:
     print("File is empty or does not exist")
 
-print(reebokPrices)
+# print(reebokPrices)
 
 def gatherRowData(jsonData, prevData=reebokPrices):
     # print(jsonData['props']['initialProps']['pageProps']['initialApolloState']['ROOT_QUERY'])
@@ -30,11 +30,11 @@ def gatherRowData(jsonData, prevData=reebokPrices):
                 variant_portraitURL = variant["variant_thumb_image"].split("?io=transform:scale,width:280,height:280")[0]
                 if variant_price not in prevData.keys():
                     prevData[variant_price] = [variant_portraitURL]
-                else:
+                elif variant_portraitURL not in prevData[variant_price]:
                     prevData[variant_price].append(variant_portraitURL)
         if price not in prevData.keys():
             prevData[price] = [portraitURL]
-        else:
+        elif portraitURL not in prevData[price]:
             prevData[price].append(portraitURL)
 
 def collectData(url):

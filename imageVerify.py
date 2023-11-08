@@ -11,6 +11,7 @@ duplicate_count = 0
 hash_set = set()
 
 for root, dirs, files in os.walk(dataset_folder):
+    image_folder_count = 0
     for filename in files:
         if filename.endswith(tuple(imageTypes)):
             try:
@@ -22,7 +23,7 @@ for root, dirs, files in os.walk(dataset_folder):
                     img = Image.open(img_path)
                     img.verify()
                     image_count += 1
-                    print(f"Checked {image_count} images", end='\r')
+                    image_folder_count += 1
                 else:
                     print(f"Duplicate image found and removed: {filename}")
                     os.remove(img_path)
@@ -30,5 +31,6 @@ for root, dirs, files in os.walk(dataset_folder):
             except (IOError, SyntaxError) as e:
                 print('Bad file:', filename)
                 os.remove(os.path.join(root, filename))
+    print(f"Folder: {root}, Image count: {image_folder_count}")
 
 print(f"Checked {image_count} images and removed {duplicate_count} duplicate images")

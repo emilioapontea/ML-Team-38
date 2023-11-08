@@ -5,8 +5,10 @@ import os
 
 reebokPrices = {}
 
-if os.path.exists("reebokPrices.json") and os.path.getsize("reebokPrices.json") > 0:
-    with open("reebokPrices.json", "r") as jsonFile:
+reebokFile = "./scrapedData/reebokPrices.json"
+
+if os.path.exists(reebokFile) and os.path.getsize(reebokFile) > 0:
+    with open(reebokFile, "r") as jsonFile:
         reebokPrices = json.load(jsonFile)
 else:
     print("File is empty or does not exist")
@@ -42,13 +44,13 @@ def collectData(url):
     data = json.loads(script_tag.string)
     gatherRowData(jsonData=data)
 
-    with open("reebokPrices.json", "w") as jsonFile:
+    with open(reebokFile, "w") as jsonFile:
         json.dump(reebokPrices, jsonFile, indent=2)
 
 for i in range(1, 22):  # assuming there are 10 pages to scrape
     url = f"https://www.reebok.com/c/600000057/collection-shoes?page={i}"
     collectData(url)
 
-with open("reebokPrices.json", "w") as jsonFile:
+with open(reebokFile, "w") as jsonFile:
     json.dump(reebokPrices, jsonFile, indent=2)
 

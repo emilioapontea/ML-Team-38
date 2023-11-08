@@ -7,8 +7,10 @@ womenURL = "https://api.nike.com/cic/browse/v2?queryid=products&anonymousId=A140
 
 nikePrices = {}
 
-if os.path.exists("nikePrices.json") and os.path.getsize("nikePrices.json") > 0:
-    with open("nikePrices.json", "r") as jsonFile:
+nikeFile = "./scrapedData/nikePrices.json"
+
+if os.path.exists(nikeFile) and os.path.getsize(nikeFile) > 0:
+    with open(nikeFile, "r") as jsonFile:
         nikePrices = json.load(jsonFile)
 else:
     print("File is empty or does not exist")
@@ -43,12 +45,12 @@ def collectData(url):
         req = requests.get(url, headers="")
         data = req.json().get("data").get("products").get("products")
 
-        with open("nikePrices.json", "w") as jsonFile:
+        with open(nikeFile, "w") as jsonFile:
             json.dump(nikePrices, jsonFile, indent=2)
 
 
 collectData(womenURL)
 collectData(menURL)
 
-with open("nikePrices.json", "w") as jsonFile:
+with open(nikeFile, "w") as jsonFile:
     json.dump(nikePrices, jsonFile, indent=2)

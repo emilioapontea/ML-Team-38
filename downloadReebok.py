@@ -3,7 +3,7 @@ import os
 import urllib.request
 
 # Load the JSON file
-with open('./scrapedData/reebokData.json') as f:
+with open('./scrapedData/reebokPrices.json') as f:
     data = json.load(f)
 
 # Iterate over the price categories

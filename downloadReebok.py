@@ -22,6 +22,7 @@ for price, urls in data.items():
         # Check if the image already exists
         if not os.path.exists(image_path):
             # Download the image and save it in the corresponding directory
+            print(f"Downloaded {url}")
             urllib.request.urlretrieve(url, image_path)
         else:
             print("Image already downloaded!")

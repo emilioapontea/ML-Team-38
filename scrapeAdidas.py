@@ -24,7 +24,7 @@ headers = {
 
 
 menURL = "https://www.adidas.com/api/plp/content-engine?sitePath=us&query=men-shoes&start=0"
-
+# * https://www.adidas.com/api/plp/content-engine?sitePath=us&query=men-athletic_sneakers&start=720
 adidasPrices = {}
 
 adidasFile = "./scrapedData/adidasPrices.json"

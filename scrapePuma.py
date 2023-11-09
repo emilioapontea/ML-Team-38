@@ -14,7 +14,7 @@ else:
     print("File is empty or does not exist")
 
 def gatherRowData(jsonData, prevData=pumaPrices):
-    jsonData = jsonData["data"]
+    jsonData = json.loads(jsonData["props"]["urqlState"]["-12898589755"]["data"])
     jsonData = list(jsonData["categoryByUrl"]["products"]["nodes"])
     for each in jsonData:
         price = str(each["variantProduct"]["price"])
@@ -26,10 +26,11 @@ def gatherRowData(jsonData, prevData=pumaPrices):
                 prevData[price].append(imageURL)
 
 def gatherRowDataJSON(jsonData, prevData=pumaPrices):
-    jsonData = json.loads(jsonData["props"]["urqlState"]["-12898589755"]["data"])
-    jsonData = list(jsonData["categoryByUrl"]["products"]["nodes"])
+    jsonData = list(jsonData["data"]["categoryByUrl"]["products"]["nodes"])
+    print(jsonData)
     for each in jsonData:
         price = str(each["variantProduct"]["price"])
+        print(price)
         imageURLs = [(color["image"]["href"]).split("PNA")[0] for color in each["masterProduct"]["colors"]]
         for imageURL in imageURLs:
             if price not in prevData.keys():
@@ -47,14 +48,15 @@ def collectData(url):
     with open(pumaFile, "w") as jsonFile:
         json.dump(pumaPrices, jsonFile, indent=2)
 
-def collectDataFromJSON(filename):
-    data = json.loads(filename)
-    gatherRowData(jsonData=data)
+def collectDataFromJSON(filename="pumaGraphQL.json"):
+    with open(filename, "r") as dataFile:
+        data = json.load(dataFile)
+        gatherRowDataJSON(jsonData=data)
 
     with open(pumaFile, "w") as jsonFile:
         json.dump(pumaPrices, jsonFile, indent=2)
 
 url = f"https://us.puma.com/us/en/men/shoes?offset=500"
 collectData(url)
-
+collectDataFromJSON()
 

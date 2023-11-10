@@ -35,11 +35,11 @@ if os.path.exists(adidasFile) and os.path.getsize(adidasFile) > 0:
 else:
     print("File is empty or does not exist")
 
-print(adidasPrices)
+# print(adidasPrices)
 
 def gatherRowData(jsonData, prevData=adidasPrices):
     for each in jsonData:
-        print(each)
+        # print(each)
         price = str(each.get("price"))
         portraitURL = (each.get("image").get("src")).replace("w_280,h_280,f_auto,q_auto:sensitive/", "")
         # print(type(price))

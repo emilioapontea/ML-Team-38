@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 import json
 import os
 
+# view-source:https://www.asics.com/us/en-us/mens-shoes/c/aa10200000/?start=600&sz=700
+# view-source:https://www.asics.com/us/en-us/mens-shoes/c/aa10200000/?start=700&sz=900
+
 asicsPrices = {}
 
 asicsFile = "./scrapedData/asicsPrices.json"

@@ -18,7 +18,7 @@ def plot_loss_history(train_loss_history: float, val_loss_history: float) -> Non
     plt.xlabel("Epochs")
     plt.show()
 
-def plot_loss_history(train_acc_history: float, val_acc_history: float) -> None:
+def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
     plt.figure()
     epoch_idxs = range(len(train_acc_history))
 

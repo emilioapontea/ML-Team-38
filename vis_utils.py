@@ -111,7 +111,7 @@ def plot_confusion_matrix(
 
 
 def generate_and_plot_confusion_matrix(
-    model: nn.Module, dataset: ImageLoader, use_cuda: bool = False
+    model: nn.Module, dataset: DataLoader, use_cuda: bool = False
 ) -> None:
 
     targets, predictions, class_labels = generate_confusion_data(

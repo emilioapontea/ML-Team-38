@@ -26,7 +26,7 @@ def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
     plt.plot(epoch_idxs, val_acc_history, "-r", label="validation")
     plt.title("Accuracy history")
     plt.legend()
-    plt.ylabel("Loss")
+    plt.ylabel("Accuracy (%)")
     plt.xlabel("Epochs")
     plt.show()
 
@@ -115,7 +115,7 @@ def generate_and_plot_confusion_matrix(
 ) -> None:
 
     targets, predictions, class_labels = generate_confusion_data(
-        model, dataset, use_cuda=use_cuda
+        model, dataset
     )
 
     confusion_matrix = generate_confusion_matrix(

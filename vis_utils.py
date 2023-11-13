@@ -32,9 +32,11 @@ def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
 
 def generate_confusion_data(
     model: nn.Module,
-    dataset: DataLoader,
+    dataloader: DataLoader,
     class_labels: Sequence[str] | None = None,
 ) -> Tuple[Sequence[int], Sequence[int], Sequence[str]]:
+
+    dataset = dataloader.dataset
 
     preds = np.zeros(len(dataset)).astype(np.int32)
     targets = np.zeros(len(dataset)).astype(np.int32)
@@ -52,8 +54,6 @@ def generate_confusion_data(
             targets[i:i+len(y)] = y
             model_output = model(x)
             preds[i:i+len(y)] = model_output.argmax(-1)
-
-    class_labels = label_to_idx
 
     preds = torch.tensor(preds)
     targets = torch.tensor(targets)

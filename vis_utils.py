@@ -33,12 +33,16 @@ def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
 def generate_confusion_data(
     model: nn.Module,
     dataset: DataLoader,
+    class_labels: Sequence[str] | None = None,
 ) -> Tuple[Sequence[int], Sequence[int], Sequence[str]]:
 
     preds = np.zeros(len(dataset)).astype(np.int32)
     targets = np.zeros(len(dataset)).astype(np.int32)
-    label_to_idx = dataset.get_classes()
-    class_labels = [""] * len(label_to_idx)
+
+    if class_labels is None:
+        labels = np.arange(len(dataset)).astype(str).tolist()
+    else:
+        labels = class_labels
 
     model.eval()
 
@@ -56,7 +60,7 @@ def generate_confusion_data(
 
     model.train()
 
-    return targets.cpu().numpy(), preds.cpu().numpy(), class_labels
+    return targets.cpu().numpy(), preds.cpu().numpy(), labels
 
 
 def generate_confusion_matrix(

@@ -7,7 +7,7 @@ womenURL = "https://api.nike.com/cic/browse/v2?queryid=products&anonymousId=A140
 
 nikePrices = {}
 
-nikeFile = "./scrapedData/nikePrices.json"
+nikeFile = "../scrapedData/nikePrices.json"
 
 if os.path.exists(nikeFile) and os.path.getsize(nikeFile) > 0:
     with open(nikeFile, "r") as jsonFile:

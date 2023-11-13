@@ -75,7 +75,7 @@ To gather our images, we leverage pre-existing labeled datasets on Kaggle.com an
 [https://github.com/emilioapontea/ML-Team-38/tree/main/split_dataset](https://github.com/emilioapontea/ML-Team-38/tree/main/split_dataset)
 
 ### Models Implemented
-Our initial model is an implementation of PyTorch’s ResNet50. The final linear layer has been modified to classify our 10 classes (price ranges). Our architecture can be found [below](README/#ResNet-Architecture).
+Our initial model is an implementation of PyTorch’s ResNet50. The final linear layer has been modified to classify our 10 classes (price ranges). Our architecture can be found [below](#resnet-architecture).
 
 ## Results and Discussion
 ### Visualizations

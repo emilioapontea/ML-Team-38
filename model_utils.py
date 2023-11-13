@@ -26,6 +26,7 @@ def trainModel(
         dataloader: DataLoader,
         optimizer: torch.optim.Optimizer,
         criterion: torch.nn.Module,
+        transform: Compose,
         numEpochs: int = 5
         ) -> Tuple[List[float], List[float]]:
     train_acc_history = []

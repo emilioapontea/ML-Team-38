@@ -42,7 +42,7 @@ def generate_confusion_data(
     targets = np.zeros(len(dataset)).astype(np.int32)
 
     if class_labels is None:
-        labels = np.arange(len(dataset)).astype(str).tolist()
+        labels = np.arange(len(dataset.classes)).astype(str).tolist()
     else:
         labels = class_labels
 

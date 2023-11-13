@@ -50,7 +50,7 @@ def generate_confusion_data(
 
     model_output = []
 
-    for i, (x, y) in enumerate(dataset):
+    for i, (x, y) in enumerate(dataloader):
             targets[i:i+len(y)] = y
             model_output = model(x)
             preds[i:i+len(y)] = model_output.argmax(-1)

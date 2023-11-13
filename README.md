@@ -1,53 +1,5 @@
 # Team 38: Shoe Pricing Model
 
-Project Proposal
----
-
-## Introduction & Background
-
-Reselling of consumer products is an industry that has become popular in recent years. Technology and the advent of e-commerce have created a new and accessible platform for resellers to acquire stock and find buyers efficiently and cost-effectively. We believe, however, that there is more that can be done to improve this market by utilizing machine learning techniques applied specifically to the problem of footwear. We aim to develop a model capable of estimating a shoe’s retail price based on an image. This initiative addresses a critical need in the market, where pricing decisions are often complex and time-consuming. We seek to create a proof of concept for a tool that can automatically assign shoes a price based solely on their visual features. This technology has the potential to streamline pricing strategies, optimize inventory management, and enhance the competitiveness of businesses in the footwear market. We hope that if our model proves successful, it may be possible to provide customers with a more seamless and informed shopping experience, ensuring they receive fair and accurate pricing for the shoes they desire.
-
-## Potential Methods
-
-Our idea is to go from image to price, which is a continuous value, which makes our project an image regression problem [7]. The approach we thought of was implementing a pre-trained CNN model and adding it to our dataset of shoes in order to perform regression based on images. Our dataset would contain the image of the shoe and the associated price label. We plan on acquiring this dataset through shoe picture data accumulated by other users on Kaggle, which includes the shoe picture (sideways to the right), price, category, brand, and more features. However, our focus would only be on the image and the price label. We plan to extend this dataset by scraping shoe data off popular sites such as Nike.com, Adidas.com, and Zappos.com. We will try out several pre-trained models, such as VGG16, VGG19, and ResNet, in order to perform image-to-price regression [2][3]. Overall, this should provide us with a baseline starting point and consider other methods or models if these pre-trained networks do not work.
-
-## Potential Results and Discussion
-
-Because we are creating an image regression model, we can use a variety of evaluation metrics to determine the validity of the model. First and foremost, we can look at things like the Root Mean Square Error, R^2, and Mean Absolute Error [1]. We can also conduct K-Fold cross-validation by splitting our data and keeping track of performance metrics to ensure we are not overfitting or underfitting [1]. Finally, we can also apply explorative data analysis via a box plot to be able to better understand the descriptive statistics of our results [1].
-
-
-## Contribution Table
-- Brandon Harris: Report - Timeline & Contribution Table            
-- Emilio Aponte: Report - Introduction & Background                
-- Samrat Sahoo: Video & Slides                                    
-- Tawsif Kamal: Report - Potential Methods                        
-- Victor Guyard: Report - Potential Results / Discussion & Sources 
-
-## Timeline
-
-- Week 1: We will spend this week doing some initial data collection - this is both through Kaggle as well as some initial web scraping to gather all the images.
-- Week 2: We will spend this week preparing the data - this means cleaning the data (i.e., ensuring all our images are shoes facing the right side), preprocessing it as necessary (i.e., applying any necessary preprocessing or augmentation steps to ensure consistent data with the models), and organizing the dataset (mapping images to prices).
-- Week 3: We will spend this week selecting some pre-trained CNNs like the ones mentioned above and ensuring we are able to run the models on our data. We are essentially setting up the data and machine learning model pipelines this week.
-- Week 4: We will spend this week training and finetuning our models by optimizing the hyperparameters. We will also start writing the midpoint report for this project.
-- Week 5: We will spend this week evaluating the models with the aforementioned metrics in the report. 
-- Week 6: After going through the results, we will decide whether further improvement is necessary. If so, we will continue to determine weak points of our models or methodology to optimize our model’s performance further.
-- Week 7: We will create a proof of concept CLI-based or UI tool to enable people to utilize our trained model in an easy manner.
-- Week 8: We will write up our results in a final report (as outlined in the syllabus for this class)
-- Week 9: We will complete our write-up and submit this final report. 
-
-Responsibilties: Most responsibilties will be shared with each other but each responsibility has an "owner" who is responsibile for ensuring that task gets done. The owners are as follows:
-- Brandon: Midterm & Final Reports, Finetuning Model Hyperparameters
-- Emilio: Midterm & Final Reports, Evaluating Models
-- Samrat: Midterm & Final Reports, Creating CLI/UI Tool for Model Inference 
-- Tawsif: Midterm & Final Reports, Creating Image to Regression Data and Model Pipelines
-- Victor: Midterm & Final Reports, Webscraping Data
-
-Responsibility Chart / Timeline Link: https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=KmIHY7
-## Potential Datasets
-- https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices
-- https://www.kaggle.com/datasets/thedevastator/analyzing-trending-men-s-shoe-prices-with-datafi
-- Webscraping from shoe shopping websites
-
 Midterm Report
 ---
 ## Introduction
@@ -56,7 +8,7 @@ Topic Overview
 Within the field of e-commerce, being able to accurately predict the price of products plays a pivotal role in optimizing business operations and enhancing consumer trust. Our problem specifically tackles the idea of image-to-shoe price prediction. We create a classification model that will take an image of a shoe and classify it into different price categories (i.e., $30 - $60, $60 - $90, etc.).
 
 ### Literature Review
-In the past, there has been much work in the field of both image classification and classification applied specifically to solve problems for pricing items. An example of a prior work that applied classification techniques to determine pricing was a project from Yamamura, which leveraged a multimodal (used features such as image, size, weight, etc.) deep learning model for price classification. [6] As for approaches to image classification, with the rise of transformer networks, there has been a rise of vision-based transformer networks that are used for image classification. The vision transformer specifically utilizes BERT embeddings - a popular language embedding - and applies them to images, which are then fed into an encoder network [2]. Finally, a slightly non-traditional approach to image classification has been seen with the OpenAI CLIP model. The CLIP model is a zero-shot learning model that ingests images and outputs text. It makes this possible by using multimodal embeddings (image and text embeddings in a shared vector space). It is less traditional than a regular classification network as there are no predefined classes and stochastically but predictably outputs text. [5]
+In the past, there has been much work in the field of both image classification and classification applied specifically to solve problems for pricing items. An example of a prior work that applied classification techniques to determine pricing was a project from Yamamura, which leveraged a multimodal (used features such as image, size, weight, etc.) deep learning model for price classification. [[6]](#works-cited) As for approaches to image classification, with the rise of transformer networks, there has been a rise of vision-based transformer networks that are used for image classification. The vision transformer specifically utilizes BERT embeddings - a popular language embedding - and applies them to images, which are then fed into an encoder network [[2]](#works-cited). Finally, a slightly non-traditional approach to image classification has been seen with the OpenAI CLIP model. The CLIP model is a zero-shot learning model that ingests images and outputs text. It makes this possible by using multimodal embeddings (image and text embeddings in a shared vector space). It is less traditional than a regular classification network as there are no predefined classes and stochastically but predictably outputs text. [[5]](#works-cited)
 
 ## Problem Definition
 ### What is the Problem?
@@ -118,6 +70,60 @@ Another problem inherent with our data is the size of our data points. While Res
 
 Another potential form of feature reduction we plan to implement is to transform our images into feature vectors through Histogram of Oriented Gradients (HOG), which subdivides each image into patches and calculates the direction of the intensity gradients. Depending on the patch size, this allows us to reduce the amount of data being considered significantly. This approach has been shown to work on similar problems to ours, such as logo detection, however it is not yet clear how important color information is to our shoe pricing model. Since HOG removes color information, we will explore the effects of simple HOG transformation on our model, as well as applying HOG to each color channel.
 
+## Updated Responsibility Chart
+[Group 38 Timeline and Responsibility Chart.xlsx](https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=6D5xMw)
+
+Project Proposal
+---
+
+## Introduction & Background
+
+Reselling of consumer products is an industry that has become popular in recent years. Technology and the advent of e-commerce have created a new and accessible platform for resellers to acquire stock and find buyers efficiently and cost-effectively. We believe, however, that there is more that can be done to improve this market by utilizing machine learning techniques applied specifically to the problem of footwear. We aim to develop a model capable of estimating a shoe’s retail price based on an image. This initiative addresses a critical need in the market, where pricing decisions are often complex and time-consuming. We seek to create a proof of concept for a tool that can automatically assign shoes a price based solely on their visual features. This technology has the potential to streamline pricing strategies, optimize inventory management, and enhance the competitiveness of businesses in the footwear market. We hope that if our model proves successful, it may be possible to provide customers with a more seamless and informed shopping experience, ensuring they receive fair and accurate pricing for the shoes they desire.
+
+## Potential Methods
+
+Our idea is to go from image to price, which is a continuous value, which makes our project an image regression problem [[7]](#works-cited). The approach we thought of was implementing a pre-trained CNN model and adding it to our dataset of shoes in order to perform regression based on images. Our dataset would contain the image of the shoe and the associated price label. We plan on acquiring this dataset through shoe picture data accumulated by other users on Kaggle, which includes the shoe picture (sideways to the right), price, category, brand, and more features. However, our focus would only be on the image and the price label. We plan to extend this dataset by scraping shoe data off popular sites such as Nike.com, Adidas.com, and Zappos.com. We will try out several pre-trained models, such as VGG16, VGG19, and ResNet, in order to perform image-to-price regression [[2]](#works-cited)[[3]](#works-cited). Overall, this should provide us with a baseline starting point and consider other methods or models if these pre-trained networks do not work.
+
+## Potential Results and Discussion
+
+Because we are creating an image regression model, we can use a variety of evaluation metrics to determine the validity of the model. First and foremost, we can look at things like the Root Mean Square Error, R^2, and Mean Absolute Error [[1]](#works-cited). We can also conduct K-Fold cross-validation by splitting our data and keeping track of performance metrics to ensure we are not overfitting or underfitting [[1]](#works-cited). Finally, we can also apply explorative data analysis via a box plot to be able to better understand the descriptive statistics of our results [[1]](#works-cited).
+
+
+## Contribution Table
+- Brandon Harris: Report - Timeline & Contribution Table            
+- Emilio Aponte: Report - Introduction & Background                
+- Samrat Sahoo: Video & Slides                                    
+- Tawsif Kamal: Report - Potential Methods                        
+- Victor Guyard: Report - Potential Results / Discussion & Sources 
+
+## Timeline
+
+- Week 1: We will spend this week doing some initial data collection - this is both through Kaggle as well as some initial web scraping to gather all the images.
+- Week 2: We will spend this week preparing the data - this means cleaning the data (i.e., ensuring all our images are shoes facing the right side), preprocessing it as necessary (i.e., applying any necessary preprocessing or augmentation steps to ensure consistent data with the models), and organizing the dataset (mapping images to prices).
+- Week 3: We will spend this week selecting some pre-trained CNNs like the ones mentioned above and ensuring we are able to run the models on our data. We are essentially setting up the data and machine learning model pipelines this week.
+- Week 4: We will spend this week training and finetuning our models by optimizing the hyperparameters. We will also start writing the midpoint report for this project.
+- Week 5: We will spend this week evaluating the models with the aforementioned metrics in the report. 
+- Week 6: After going through the results, we will decide whether further improvement is necessary. If so, we will continue to determine weak points of our models or methodology to optimize our model’s performance further.
+- Week 7: We will create a proof of concept CLI-based or UI tool to enable people to utilize our trained model in an easy manner.
+- Week 8: We will write up our results in a final report (as outlined in the syllabus for this class)
+- Week 9: We will complete our write-up and submit this final report. 
+
+Responsibilties: Most responsibilties will be shared with each other but each responsibility has an "owner" who is responsibile for ensuring that task gets done. The owners are as follows:
+- Brandon: Midterm & Final Reports, Finetuning Model Hyperparameters
+- Emilio: Midterm & Final Reports, Evaluating Models
+- Samrat: Midterm & Final Reports, Creating CLI/UI Tool for Model Inference 
+- Tawsif: Midterm & Final Reports, Creating Image to Regression Data and Model Pipelines
+- Victor: Midterm & Final Reports, Webscraping Data
+
+Responsibility Chart / Timeline Link: https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=KmIHY7
+## Potential Datasets
+- https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices
+- https://www.kaggle.com/datasets/thedevastator/analyzing-trending-men-s-shoe-prices-with-datafi
+- Webscraping from shoe shopping websites
+
+## Video & Presentation
+- [Video](https://youtu.be/ipoQmIiKBfM)
+- [Presentation](https://docs.google.com/presentation/d/1QrepxgSp1oowxFkXETYxBXCTLJOTINg0yjObIau99ds/edit?usp=sharing)
 
 ## Works Cited
 
@@ -134,12 +140,6 @@ Another potential form of feature reduction we plan to implement is to transform
 [6] Yamaura, Yusuke, et al. ‘The Resale Price Prediction of Secondhand Jewelry Items Using a Multi-Modal Deep Model with Iterative Co-Attention’. arXiv [Cs.CV], 2019, [http://arxiv.org/abs/1907.00661](http://arxiv.org/abs/1907.00661). arXiv.
 
 [7] Yang, Richard R., et al. AI Blue Book: Vehicle Price Prediction Using Visual Features. arXiv, 18 Oct. 2018. arXiv.org, [https://doi.org/10.48550/arXiv.1803.11227](https://doi.org/10.48550/arXiv.1803.11227).
-
-
-## Video & Presentation
-
-- [Video](https://youtu.be/ipoQmIiKBfM)
-- [Presentation](https://docs.google.com/presentation/d/1QrepxgSp1oowxFkXETYxBXCTLJOTINg0yjObIau99ds/edit?usp=sharing)
 
 ## ResNet Architecture
 ```

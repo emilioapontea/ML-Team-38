@@ -4,7 +4,6 @@ Midterm Report
 ---
 ## Introduction
 ### Topic Overview
-Topic Overview
 Within the field of e-commerce, being able to accurately predict the price of products plays a pivotal role in optimizing business operations and enhancing consumer trust. Our problem specifically tackles the idea of image-to-shoe price prediction. We create a classification model that will take an image of a shoe and classify it into different price categories (i.e., $30 - $60, $60 - $90, etc.).
 
 ### Literature Review

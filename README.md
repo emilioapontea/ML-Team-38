@@ -32,21 +32,21 @@ Our initial model is an implementation of PyTorch’s ResNet50. The final linear
 ### Visualizations
 A random sample of shoe images from our dataset:
 
-![image](https://github.com/emilioapontea/ML-Team-38/assets/44624188/e4668c58-1970-49a8-b332-4b06545af245)
+![image](https://i.imgur.com/9ohSK6s.png)
 
 Images from our testing set which were misclassified:
 
 Ground Truth: $60 - $90, Predicted: $120 - $150:
 
-<img src="https://github.com/emilioapontea/ML-Team-38/blob/main/split_dataset/test/2/189640ca-69e8-4047-838b-b90f9280e288.jpg" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="200"/>
+<img src="https://i.imgur.com/WBBlyVi.jpg" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="200"/>
 
 Ground Truth: $180 - $210, Predicted: $90 - $120:
 
-<img src="https://github.com/emilioapontea/ML-Team-38/blob/main/split_dataset/test/6/a4ca0cdc-6d51-4d6d-93d8-43a74ff848d8.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+<img src="https://i.imgur.com/AAJvK8J.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
 
 Ground Truth: $240 - $270, Predicted: $180 - $210:
 
-<img src="https://github.com/emilioapontea/ML-Team-38/blob/main/split_dataset/test/8/8ff2e36e49a040a385fc56e2c0a4a381_9366.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+<img src="https://i.imgur.com/omelPT8.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
 
 ### Quantitative Metrics
 ![image](https://i.imgur.com/hs6t52x.png)

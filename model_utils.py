@@ -48,9 +48,9 @@ def trainModel(
 
         model.eval()
         print(f"Evaluating on Train: {epoch}")
-        train_acc_history.append(testAccuracy("./split_dataset/train", model))
+        train_acc_history.append(testAccuracy("./split_dataset/train", model, transform))
         print(f"Evaluating on Val: {epoch}")
-        val_acc_history.append(testAccuracy("./split_dataset/val", model))
+        val_acc_history.append(testAccuracy("./split_dataset/val", model, transform))
 
         print(f"Epoch [{epoch+1}/{numEpochs}], Loss: {loss.item():.4f}")
 

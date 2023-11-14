@@ -53,7 +53,7 @@ Ground Truth: $240 - $270, Predicted: $180 - $210:
 
 The training accuracy of our model across its 5 training epochs. After training, our model showed 65.83% accuracy on training data, and 51.93% on the unseen validation data. On unseen testing data (smaller dataset), accuracy dropped to 21.57%
 
-![image](https://github.com/emilioapontea/ML-Team-38/assets/44624188/e123ce1f-017c-4974-9440-3ac61e0d9991)
+![image](https://i.imgur.com/cAfuJL4.png)
 
 ### Analysis of Model
 We initially planned to implement a regression model to predict the price of shoes as a continuous value. Upon further research, we found it would be more effective to switch to a classification model approach. Pretrained models such as ResNet are optimized to work on large image datasets, and we decided to leverage this architecture to minimize the overhead of training our model to be able to recognize images in the first place. By discretizing our labels, we were able to simplify our problem and ensure that it would be feasible to approach, given that our dataset would be quite large by nature.

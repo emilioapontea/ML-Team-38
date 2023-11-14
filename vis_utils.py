@@ -33,7 +33,8 @@ def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
 def generate_confusion_data(
     model: nn.Module,
     dataloader: DataLoader,
-    class_labels: Sequence[str] | None = None,
+    class_labels
+    # class_labels: Sequence[str] | None = None,
 ) -> Tuple[Sequence[int], Sequence[int], Sequence[str]]:
 
     dataset = dataloader.dataset

@@ -26,37 +26,42 @@ def plot_acc_history(train_acc_history: float, val_acc_history: float) -> None:
     plt.plot(epoch_idxs, val_acc_history, "-r", label="validation")
     plt.title("Accuracy history")
     plt.legend()
-    plt.ylabel("Loss")
+    plt.ylabel("Accuracy (%)")
     plt.xlabel("Epochs")
     plt.show()
 
 def generate_confusion_data(
     model: nn.Module,
-    dataset: DataLoader,
+    dataloader: DataLoader,
+    class_labels
+    # class_labels: Sequence[str] | None = None,
 ) -> Tuple[Sequence[int], Sequence[int], Sequence[str]]:
+
+    dataset = dataloader.dataset
 
     preds = np.zeros(len(dataset)).astype(np.int32)
     targets = np.zeros(len(dataset)).astype(np.int32)
-    label_to_idx = dataset.get_classes()
-    class_labels = [""] * len(label_to_idx)
+
+    if class_labels is None:
+        labels = np.arange(len(dataset.classes)).astype(str).tolist()
+    else:
+        labels = class_labels
 
     model.eval()
 
     model_output = []
 
-    for i, (x, y) in enumerate(dataset):
+    for i, (x, y) in enumerate(dataloader):
             targets[i:i+len(y)] = y
             model_output = model(x)
             preds[i:i+len(y)] = model_output.argmax(-1)
-
-    class_labels = label_to_idx
 
     preds = torch.tensor(preds)
     targets = torch.tensor(targets)
 
     model.train()
 
-    return targets.cpu().numpy(), preds.cpu().numpy(), class_labels
+    return targets.cpu().numpy(), preds.cpu().numpy(), labels
 
 
 def generate_confusion_matrix(
@@ -111,11 +116,11 @@ def plot_confusion_matrix(
 
 
 def generate_and_plot_confusion_matrix(
-    model: nn.Module, dataset: DataLoader, use_cuda: bool = False
+    model: nn.Module, dataset: DataLoader, labels: Sequence[str] = None
 ) -> None:
 
     targets, predictions, class_labels = generate_confusion_data(
-        model, dataset, use_cuda=use_cuda
+        model, dataset, labels
     )
 
     confusion_matrix = generate_confusion_matrix(

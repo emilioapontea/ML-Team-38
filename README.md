@@ -49,7 +49,7 @@ Ground Truth: $240 - $270, Predicted: $180 - $210:
 <img src="https://github.com/emilioapontea/ML-Team-38/blob/main/split_dataset/test/8/8ff2e36e49a040a385fc56e2c0a4a381_9366.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
 
 ### Quantitative Metrics
-![image](https://github.com/emilioapontea/ML-Team-38/assets/44624188/3eab59b3-a8d0-4e80-99b6-6ad85a51da46)
+![image](https://i.imgur.com/hs6t52x.png)
 
 The training accuracy of our model across its 5 training epochs. After training, our model showed 65.83% accuracy on training data, and 51.93% on the unseen validation data. On unseen testing data (smaller dataset), accuracy dropped to 21.57%
 

@@ -1,3 +1,5 @@
 
 .DS_Store
 *.pyc
+models/resnet-101.pth
+models/vgg16.pth

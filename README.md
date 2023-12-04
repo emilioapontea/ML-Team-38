@@ -1,5 +1,6 @@
 # Team 38: Shoe Pricing Model
-Final Report
+
+Final Report [[Video]](https://youtu.be/IvcEzssdXD0)
 ---
 
 ## Introduction
@@ -25,7 +26,7 @@ To gather our images, we leverage pre-existing labeled datasets on Kaggle.com an
 - Resize all images to 224x224
 - Apply random horizontal flips 50% of the time
 - Apply color jitters 50% of the time
-- normalize our images using the ImageNet mean and std values
+- Normalize our images using the ImageNet mean and std values
 
 We chose these specific pre-processing methods as these are similar data preparation steps taken by state of the art models. Additionally, because we are choosing to implement pre-trained models which were trained on ImageNet, it is common practice to use the ImageNet mean and standard deviation values.
 
@@ -45,6 +46,7 @@ A random sample of shoe images from our dataset:
 ![image](https://i.imgur.com/9ohSK6s.png)
 
 #### Table Summary (Accuracy)
+
 | Model     | Training Accuracy | Validation Accuracy | Testing Accuracy |
 |-----------|-------------------|---------------------|------------------|
 | ResNet-18 | 51.57%            | 41.92%              | 23.62%           |
@@ -102,11 +104,7 @@ ResNet-50 is a deeper version than ResNet-18 with 50 layers. We chose to conside
 - 36.1% accuracy on the unseen validation data
 - 24.20% accuracy on unseen testing data (smaller dataset) 
 
-
-
-
 ##### Confusion Matrix on test set
-
 <img src="results\resNet-101-confusionMatrix.PNG" alt="resnet-101 confusion matrix" width="500"/>
 
 ##### Training + Val Accuracy
@@ -125,18 +123,14 @@ ResNet-101 is a deeper version than ResNet-50 and ResNet-18 with 101 layers. Nat
 - 24.32% accuracy on the unseen validation data
 - 27.99% accuracy on unseen testing data (smaller dataset) 
 
-
 ##### Confusion Matrix on test set
-
 <img src="results\vgg-16-confusionMatrix.PNG" alt="resnet-101 confusion matrix" width="500"/>
 
 ##### Training + Val Accuracy
 <img src="results\vgg-16-trainingLoss.PNG" alt="resnet-101 accuracy plot" width="500"/>
 
-
 ##### Analysis
 VGG-16 was chosen as an alternative to ResNet-16. As ResNet-101 came to a bottleneck, we chose to experiment with VGG-16, another state-of-the-art image classificaiton model also trained on ImageNet. Analyzing the confusion matrix, it is clear that VGG-16 is not suitable for this task. It only was able to classify shoes in the first price category correctly, but misclassified everything else in the category of [120, 150].
-
 
 ### Overall Analysis
 We initially planned to implement a regression model to predict the price of shoes as a continuous value. Upon further research, we found it would be more effective to switch to a classification model approach. Pretrained models such as ResNet and VGG are optimized to work on large image datasets, and we decided to leverage this architecture to minimize the overhead of training our model to be able to recognize images in the first place. By discretizing our labels, we were able to simplify our problem and ensure that it would be feasible to approach, given that our dataset would be quite large by nature.
@@ -155,7 +149,7 @@ Another potential form of feature reduction we plan to implement is to transform
 ## Updated Responsibility Chart
 [Group 38 Timeline and Responsibility Chart.xlsx](https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=6D5xMw)
 
-
+---
 
 Midterm Report
 ---

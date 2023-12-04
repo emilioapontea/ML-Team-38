@@ -29,7 +29,7 @@ def trainModel(
         optimizer: torch.optim.Optimizer,
         criterion: torch.nn.Module,
         transform: Compose,
-        numEpochs: int = 5
+        numEpochs: int = 15
         ) -> Tuple[List[float], List[float]]:
     train_acc_history = []
     val_acc_history = []

@@ -44,6 +44,14 @@ A random sample of shoe images from our dataset:
 
 ![image](https://i.imgur.com/9ohSK6s.png)
 
+#### Table Summary (Accuracy)
+| Model     | Training Accuracy | Validation Accuracy | Testing Accuracy |
+|-----------|-------------------|---------------------|------------------|
+| ResNet-18 | 51.57%            | 41.92%              | 23.62%           |
+| ResNet-50 | 65.83%            | 51.93%              | 21.57%           |
+| ResNet-101| 35.83%            | 36.1%               | 24.20%           |
+| VGG-16    | 24.22%            | 24.32%              | 27.99% 
+
 
 
 #### ResNet-18
@@ -55,14 +63,16 @@ A random sample of shoe images from our dataset:
 
 ##### Confusion Matrix on test set
 
-<img src="results\resNet-18-confusionMatrix.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+<img src="results\resNet-18-confusionMatrix.PNG" alt="ResNet-18 confusion matrix" width="500"/>
 
 ##### Training + Val Accuracy
-<img src="results\resNet-18-trainingLoss.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+<img src="results\resNet-18-trainingLoss.PNG" alt="resnet-18 accuracy plot" width="500"/>
 
+##### Misclassifications on the test set
+<img src="results\resNet-18-misclassifications.PNG" alt="resnet-18 misclassifications" width="700"/>
 
-
-
+##### Analysis
+ResNet-18 was able to reach greater than 50% on the training set, but still did remain relatively lower on the validation and testing set. However, it is evident that the model did train as accuracy started from around 40% on the training set and then rose to 51% after the 5 epochs. Out of all our models, ResNet-18 performed the second best. We see that it was able to perfectly classify the shoes in the price [30, 60] range and [60, 90] ranges. It did not perform too well on shoes with prices [150, 180], [240, 270] with accuracy less than 50% on those categories.
 
 
 #### ResNet-50
@@ -74,49 +84,69 @@ A random sample of shoe images from our dataset:
 
 ##### Confusion Matrix on test set
 
-<img src="results\resNet-50-confusionMatrix.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+<img src="results\resNet-50-confusionMatrix.PNG" alt="resnet-50 confusion matrix" width="500"/>
 
 ##### Training + Val Accuracy
-<img src="results\resNet-50-trainingLoss.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+<img src="results\resNet-50-trainingLoss.PNG" alt="resnet-50 accuracy plot" width="500"/>
 
+##### Misclassifications on the test set
+<img src="results\resNet-50-misclassifications.PNG" alt="resnet-50 misclassifications" width="700"/>
 
+##### Analysis
+ResNet-50 is a deeper version than ResNet-18 with 50 layers. We chose to consider this model as we thought that if ResNet-18 did train on our images, perhaps a deeper version of ResNet will perform better. And our hypothesis proved true. The accuracy on the validation set reached around 52% compared to 42% on ResNet-18. On the test set, however, it performed worse than ResNet-18 with accuracy around 21% compared to 23%. Also from the confusion matrix, it seems as though several of the shoes were classified wrongly classified in the [60,90] price bin.
 
 
 #### ResNet-101
+##### Accuracy after 5 epochs
+- 35.83% accuracy on training data
+- 36.1% accuracy on the unseen validation data
+- 24.20% accuracy on unseen testing data (smaller dataset) 
+
+
+
+
+##### Confusion Matrix on test set
+
+<img src="results\resNet-101-confusionMatrix.PNG" alt="resnet-101 confusion matrix" width="500"/>
+
+##### Training + Val Accuracy
+<img src="results\resNet-101-trainingLoss.PNG" alt="resnet-101 accuracy plot" width="500"/>
+
+##### Misclassifications on the test set
+<img src="results\resNet-101-misclassifications.PNG" alt="resnet-101 misclassifications" width="700"/>
+
+##### Analysis
+ResNet-101 is a deeper version than ResNet-50 and ResNet-18 with 101 layers. Naturally, We chose to consider this with our assumption that a deeper ResNet model would outperform the previous shallower ResNet. It did perform better on the test set than the shallower ResNets with 24% compared to 23% (ResNet-50) and 21% (ResNet-18), but on the validation set it performed worse than both shallower models with 36% compared to 51% (ResNet-50) and 41% (ResNet-18). The confusion matrix for this model seems more generalizable than ResNet-50 and did not misclassify several shoes in the [30, 60] price range. The model did however classify several of the misclassified images in neighboring price ranges which shows a promising sign. The deterioation of the accuracy came from the fact that it was not able to accurately classify shoes above the $180 price ranges.
+
 
 #### VGG-16
+##### Accuracy after 5 epochs
+- 24.22% accuracy on training data
+- 24.32% accuracy on the unseen validation data
+- 27.99% accuracy on unseen testing data (smaller dataset) 
 
 
-Images from our testing set which were misclassified:
+##### Confusion Matrix on test set
 
-Ground Truth: $60 - $90, Predicted: $120 - $150:
+<img src="results\vgg-16-confusionMatrix.PNG" alt="resnet-101 confusion matrix" width="500"/>
 
-<img src="https://i.imgur.com/WBBlyVi.jpg" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="200"/>
+##### Training + Val Accuracy
+<img src="results\vgg-16-trainingLoss.PNG" alt="resnet-101 accuracy plot" width="500"/>
 
-Ground Truth: $180 - $210, Predicted: $90 - $120:
 
-<img src="https://i.imgur.com/AAJvK8J.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+##### Analysis
+VGG-16 was chosen as an alternative to ResNet-16. As ResNet-101 came to a bottleneck, we chose to experiment with VGG-16, another state-of-the-art image classificaiton model also trained on ImageNet. Analyzing the confusion matrix, it is clear that VGG-16 is not suitable for this task. It only was able to classify shoes in the first price category correctly, but misclassified everything else in the category of [120, 150].
 
-Ground Truth: $240 - $270, Predicted: $180 - $210:
 
-<img src="https://i.imgur.com/omelPT8.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+### Overall Analysis
+We initially planned to implement a regression model to predict the price of shoes as a continuous value. Upon further research, we found it would be more effective to switch to a classification model approach. Pretrained models such as ResNet and VGG are optimized to work on large image datasets, and we decided to leverage this architecture to minimize the overhead of training our model to be able to recognize images in the first place. By discretizing our labels, we were able to simplify our problem and ensure that it would be feasible to approach, given that our dataset would be quite large by nature.
 
-### Quantitative Metrics
-![image](https://i.imgur.com/hs6t52x.png)
+The retail pricing of shoes is a subjective measure that takes into account modern fashion trends, personal consumer preferences, manufacturing and design costs, among countless other factors. It is difficult for a single person to correctly classify the price range of a shoe given only its image, so it is not surprising that our models barely reached 50% accuracy on the validation images. The purpose of this exploration is to determine if it is even possible for a machine learning model to accurately predict the price range of a shoe, and these preliminary results are promising.
 
-The training accuracy of our model across its 5 training epochs. After training, our model showed 65.83% accuracy on training data, and 51.93% on the unseen validation data. On unseen testing data (smaller dataset), accuracy dropped to 21.57%
-
-![image](https://i.imgur.com/cAfuJL4.png)
-
-### Analysis of Model
-We initially planned to implement a regression model to predict the price of shoes as a continuous value. Upon further research, we found it would be more effective to switch to a classification model approach. Pretrained models such as ResNet are optimized to work on large image datasets, and we decided to leverage this architecture to minimize the overhead of training our model to be able to recognize images in the first place. By discretizing our labels, we were able to simplify our problem and ensure that it would be feasible to approach, given that our dataset would be quite large by nature.
-
-The retail pricing of shoes is a subjective measure that takes into account modern fashion trends, personal consumer preferences, manufacturing and design costs, among countless other factors. It is difficult for a single person to correctly classify the price range of a shoe given only its image, so it is not surprising that our ResNet model barely reached 50% accuracy on the validation images. The purpose of this exploration is to determine if it is even possible for a machine learning model to accurately predict the price range of a shoe, and these preliminary results are promising.
-
-The confusion matrix on the testing dataset shows promise for future iterations of our model. While the model performed poorly with an accuracy of 21.57% on this dataset, a majority of misclassified shoes were mostly classified into neighboring price ranges. Judging by the discrepancy between our testing and training data, our model is still underfitting. In the future, we will consider strategies to increase variance in our data.
+The confusion matrix on the testing dataset shows promise for future iterations of our model. While the models performed poorly with an accuracy of less than 30% for all models on this dataset, a majority of misclassified shoes were mostly classified into neighboring price ranges. Judging by the discrepancy between our testing and training data, our model is still underfitting. In the future, we will consider strategies to increase variance in our data.
 
 ### Future Steps
-While we have developed a model that performs moderately well, we know there are many steps we can take in the future to improve the model further. The first thing we notice is that our dataset is unevenly distributed, with certain classes having more data than others. Analyzing this on the surface level, we can consider extreme cases where the model is trained on thousands of images of one class and only one image of another class; almost always, the model will predict the class with thousands of images. Because of this, we want better ways to balance our dataset. One way we can do this is by applying augmentation techniques (brightness, contrast, saturation, etc.) to increase the number of images in that class. Another technique we can apply is undersampling, which randomly removes some samples from the larger class (albeit also leading to some loss of information). We can also apply a weighted loss function where we give more importance to the minority class, enabling the final weights to be more balanced. 
+While we have developed models that performs moderately well, we know there are many steps we can take in the future to improve the model further. The first thing we notice is that our dataset is unevenly distributed, with certain classes having more data than others. Analyzing this on the surface level, we can consider extreme cases where the model is trained on thousands of images of one class and only one image of another class; almost always, the model will predict the class with thousands of images. Because of this, we want better ways to balance our dataset. One way we can do this is by applying augmentation techniques (brightness, contrast, saturation, etc.) to increase the number of images in that class. Another technique we can apply is undersampling, which randomly removes some samples from the larger class (albeit also leading to some loss of information). We can also apply a weighted loss function where we give more importance to the minority class, enabling the final weights to be more balanced. 
 
 Another problem inherent with our data is the size of our data points. While ResNet is equipped to handle large images, our images are a simple subset of the images that are possible. For example, the majority of our images are taken on a white background. Feature reduction is a step we plan to take to mitigate potential overfitting and the curse of dimensionality. We plan to implement Principal Component Analysis (PCA) as a feature transform to our data in order to maximize feature variance and be able to cut down on features which carry little information.
 

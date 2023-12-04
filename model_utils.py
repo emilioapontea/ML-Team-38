@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import Compose
 from torchvision.datasets import ImageFolder
 
-def testAccuracy(dataPath: str, model: Module, transform: Compose) -> float:
+def testAccuracy(dataPath: str, model: Module, transform: Compose, device) -> float:
     testset = ImageFolder(root=dataPath, transform=transform)
     testloader = DataLoader(testset, batch_size=10, shuffle=False)
     correct = 0
@@ -13,6 +13,8 @@ def testAccuracy(dataPath: str, model: Module, transform: Compose) -> float:
     with torch.no_grad():
         for data in testloader:
             images, labels = data
+            images = images.to(device)
+            labels = labels.to(device)
             outputs = model(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -34,10 +36,12 @@ def trainModel(
 
     i = 0
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(f'TRAINING ON {device}')
     for epoch in range(numEpochs):
         model.train()
         for images, labels in dataloader:
-            images.to(device)
+            images = images.to(device)
+            labels = labels.to(device)
             optimizer.zero_grad()
             print(f"Training: {epoch} {i}")
             i += 1
@@ -48,9 +52,9 @@ def trainModel(
 
         model.eval()
         print(f"Evaluating on Train: {epoch}")
-        train_acc_history.append(testAccuracy("./split_dataset/train", model, transform))
+        train_acc_history.append(testAccuracy("./split_dataset/train", model, transform, device))
         print(f"Evaluating on Val: {epoch}")
-        val_acc_history.append(testAccuracy("./split_dataset/val", model, transform))
+        val_acc_history.append(testAccuracy("./split_dataset/val", model, transform, device))
 
         print(f"Epoch [{epoch+1}/{numEpochs}], Loss: {loss.item():.4f}")
 

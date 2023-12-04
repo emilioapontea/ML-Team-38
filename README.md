@@ -1,4 +1,131 @@
 # Team 38: Shoe Pricing Model
+Final Report
+---
+
+## Introduction
+### Topic Overview
+Within the field of e-commerce, being able to accurately predict the price of products plays a pivotal role in optimizing business operations and enhancing consumer trust. Our problem specifically tackles the idea of image-to-shoe price prediction. We create a classification model that will take an image of a shoe and classify it into different price categories (i.e., $30 - $60, $60 - $90, etc.).
+
+### Literature Review
+In the past, there has been much work in the field of both image classification and classification applied specifically to solve problems for pricing items. An example of a prior work that applied classification techniques to determine pricing was a project from Yamamura, which leveraged a multimodal (used features such as image, size, weight, etc.) deep learning model for price classification. [[6]](#works-cited) As for approaches to image classification, with the rise of transformer networks, there has been a rise of vision-based transformer networks that are used for image classification. The vision transformer specifically utilizes BERT embeddings - a popular language embedding - and applies them to images, which are then fed into an encoder network [[2]](#works-cited). Finally, a slightly non-traditional approach to image classification has been seen with the OpenAI CLIP model. The CLIP model is a zero-shot learning model that ingests images and outputs text. It makes this possible by using multimodal embeddings (image and text embeddings in a shared vector space). It is less traditional than a regular classification network as there are no predefined classes and stochastically but predictably outputs text. [[5]](#works-cited)
+
+## Problem Definition
+### What is the Problem?
+In the realm of e-commerce, determining accurate and precise prices based on various product factors plays a pivotal role in optimizing business strategies and gaining consumer confidence. Prices are generally determined by the quantity demanded and quantity supplied by a market for a specific product. However, it is often difficult to correctly predict the price, leading to incorrect pricing by market suppliers or incorrect purchasing by market consumers. This, in turn, leads to economic inefficiencies and lower total economic surplus. In order to increase economic surplus in the markets, we aim to take a machine learning-based approach to determining pricing, specifically focusing on the shoe market.
+
+### Project Motivation
+Our motivation for this project is rooted in the pursuit of being able to find more economically efficient ways to determine pricing for the products we love most. By refining pricing strategies, we can eliminate economic inefficiencies - benefiting the consumer in the prices they must pay and the supplier in maximizing their total economic surplus. Machine learning enables us to do this because we can easily look at previous data and derive correlations and associations between different characteristics of an item we want to sell. 
+
+## Methods
+### Data Processing
+Our dataset is a folder-structured dataset (a common format used for classification), with each folder having a name corresponding to the starting price range. So, for example, a folder with the name 30 would have a price range of 30 - 60, and within it would be images of shoes within that price range.
+
+To gather our images, we leverage pre-existing labeled datasets on Kaggle.com and web scraping various shoe marketplaces such as Reebok, Adidas, Nike, etc. After scraping we preprocess our images by following the best practices of state-of-the-art models that performed on the Large Scale Visual Recognition Challenge, or ILSVRC. More specifally, we chose to do the following image transformations: 
+
+- Resize all images to 224x224
+- Apply random horizontal flips 50% of the time
+- Apply color jitters 50% of the time
+- normalize our images using the ImageNet mean and std values
+
+We chose these specific pre-processing methods as these are similar data preparation steps taken by state of the art models. Additionally, because we are choosing to implement pre-trained models which were trained on ImageNet, it is common practice to use the ImageNet mean and standard deviation values.
+
+
+We also split the data into two parts - training data (70% of the data), validation data (20% of the data), and testing data (10% of the data). This ensures that we are avoiding overfitting by not training on all the data and instead ensuring that we use some of our data to validate whether our model is generalizing. 
+
+### Link to Dataset
+[https://github.com/emilioapontea/ML-Team-38/tree/main/split_dataset](https://github.com/emilioapontea/ML-Team-38/tree/main/split_dataset)
+
+### Models Implemented
+We chose to implement several pretrained models instead of developing a model from scratch as we thought it is generally a difficult task even for humans to determine the price of a shoe given its image. Thus, we wanted to see the accuracies we could achieve with several state-of-the-art pretrained models. The following are the models we trained. For all of them, The final linear layer has been modified to classify our 10 classes (price bins). One of our ResNet architectures (ResNet-50) can be found [below](#resnet-architecture) and VGG architecture also [below](#vgg-16-architecture).
+
+## Results and Discussion
+### Visualizations
+A random sample of shoe images from our dataset:
+
+![image](https://i.imgur.com/9ohSK6s.png)
+
+
+
+#### ResNet-18
+##### Accuracy after 5 epochs
+- 51.57% accuracy on training data
+- 41.92% accuracy on the unseen validation data
+- 23.62% accuracy on unseen testing data (smaller dataset)
+
+
+##### Confusion Matrix on test set
+
+<img src="results\resNet-18-confusionMatrix.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+
+##### Training + Val Accuracy
+<img src="results\resNet-18-trainingLoss.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+
+
+
+
+
+
+#### ResNet-50
+##### Accuracy after 5 epochs
+- 65.83% accuracy on training data
+- 51.93% accuracy on the unseen validation data
+- 21.57% accuracy on unseen testing data (smaller dataset) 
+
+
+##### Confusion Matrix on test set
+
+<img src="results\resNet-50-confusionMatrix.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+
+##### Training + Val Accuracy
+<img src="results\resNet-50-trainingLoss.PNG" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="500"/>
+
+
+
+
+#### ResNet-101
+
+#### VGG-16
+
+
+Images from our testing set which were misclassified:
+
+Ground Truth: $60 - $90, Predicted: $120 - $150:
+
+<img src="https://i.imgur.com/WBBlyVi.jpg" alt="Ground Truth: $60 - $90, Predicted: $120 - $150" width="200"/>
+
+Ground Truth: $180 - $210, Predicted: $90 - $120:
+
+<img src="https://i.imgur.com/AAJvK8J.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+
+Ground Truth: $240 - $270, Predicted: $180 - $210:
+
+<img src="https://i.imgur.com/omelPT8.jpg" alt="Ground Truth: $180 - $210, Predicted: $90 - $120" width="200"/>
+
+### Quantitative Metrics
+![image](https://i.imgur.com/hs6t52x.png)
+
+The training accuracy of our model across its 5 training epochs. After training, our model showed 65.83% accuracy on training data, and 51.93% on the unseen validation data. On unseen testing data (smaller dataset), accuracy dropped to 21.57%
+
+![image](https://i.imgur.com/cAfuJL4.png)
+
+### Analysis of Model
+We initially planned to implement a regression model to predict the price of shoes as a continuous value. Upon further research, we found it would be more effective to switch to a classification model approach. Pretrained models such as ResNet are optimized to work on large image datasets, and we decided to leverage this architecture to minimize the overhead of training our model to be able to recognize images in the first place. By discretizing our labels, we were able to simplify our problem and ensure that it would be feasible to approach, given that our dataset would be quite large by nature.
+
+The retail pricing of shoes is a subjective measure that takes into account modern fashion trends, personal consumer preferences, manufacturing and design costs, among countless other factors. It is difficult for a single person to correctly classify the price range of a shoe given only its image, so it is not surprising that our ResNet model barely reached 50% accuracy on the validation images. The purpose of this exploration is to determine if it is even possible for a machine learning model to accurately predict the price range of a shoe, and these preliminary results are promising.
+
+The confusion matrix on the testing dataset shows promise for future iterations of our model. While the model performed poorly with an accuracy of 21.57% on this dataset, a majority of misclassified shoes were mostly classified into neighboring price ranges. Judging by the discrepancy between our testing and training data, our model is still underfitting. In the future, we will consider strategies to increase variance in our data.
+
+### Future Steps
+While we have developed a model that performs moderately well, we know there are many steps we can take in the future to improve the model further. The first thing we notice is that our dataset is unevenly distributed, with certain classes having more data than others. Analyzing this on the surface level, we can consider extreme cases where the model is trained on thousands of images of one class and only one image of another class; almost always, the model will predict the class with thousands of images. Because of this, we want better ways to balance our dataset. One way we can do this is by applying augmentation techniques (brightness, contrast, saturation, etc.) to increase the number of images in that class. Another technique we can apply is undersampling, which randomly removes some samples from the larger class (albeit also leading to some loss of information). We can also apply a weighted loss function where we give more importance to the minority class, enabling the final weights to be more balanced. 
+
+Another problem inherent with our data is the size of our data points. While ResNet is equipped to handle large images, our images are a simple subset of the images that are possible. For example, the majority of our images are taken on a white background. Feature reduction is a step we plan to take to mitigate potential overfitting and the curse of dimensionality. We plan to implement Principal Component Analysis (PCA) as a feature transform to our data in order to maximize feature variance and be able to cut down on features which carry little information.
+
+Another potential form of feature reduction we plan to implement is to transform our images into feature vectors through Histogram of Oriented Gradients (HOG), which subdivides each image into patches and calculates the direction of the intensity gradients. Depending on the patch size, this allows us to reduce the amount of data being considered significantly. This approach has been shown to work on similar problems to ours, such as logo detection, however it is not yet clear how important color information is to our shoe pricing model. Since HOG removes color information, we will explore the effects of simple HOG transformation on our model, as well as applying HOG to each color channel.
+
+## Updated Responsibility Chart
+[Group 38 Timeline and Responsibility Chart.xlsx](https://gtvault-my.sharepoint.com/:x:/g/personal/bharris98_gatech_edu/EcHbruzZUMpOvMmnpxSZPskBDu2BCjhyK7ksPfebaUVfTw?e=6D5xMw)
+
+
 
 Midterm Report
 ---
@@ -140,7 +267,8 @@ Responsibility Chart / Timeline Link: https://gtvault-my.sharepoint.com/:x:/g/pe
 
 [7] Yang, Richard R., et al. AI Blue Book: Vehicle Price Prediction Using Visual Features. arXiv, 18 Oct. 2018. arXiv.org, [https://doi.org/10.48550/arXiv.1803.11227](https://doi.org/10.48550/arXiv.1803.11227).
 
-## ResNet Architecture
+<a id="resnet-architecture"></a>
+## ResNet-50 Architecture
 ```
 ResNet(
   (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
@@ -317,5 +445,55 @@ ResNet(
   )
   (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
   (fc): Linear(in_features=2048, out_features=10, bias=True)
+)
+```
+
+<a id="vgg-16-architecture"></a>
+## VGG-16 Architecture
+```
+VGG(
+  (features): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU(inplace=True)
+    (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): ReLU(inplace=True)
+    (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (5): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): ReLU(inplace=True)
+    (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): ReLU(inplace=True)
+    (9): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (10): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (11): ReLU(inplace=True)
+    (12): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (13): ReLU(inplace=True)
+    (14): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (15): ReLU(inplace=True)
+    (16): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (17): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (18): ReLU(inplace=True)
+    (19): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (20): ReLU(inplace=True)
+    (21): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (22): ReLU(inplace=True)
+    (23): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (24): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (25): ReLU(inplace=True)
+    (26): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (27): ReLU(inplace=True)
+    (28): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (29): ReLU(inplace=True)
+    (30): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(7, 7))
+  (classifier): Sequential(
+    (0): Linear(in_features=25088, out_features=4096, bias=True)
+    (1): ReLU(inplace=True)
+    (2): Dropout(p=0.5, inplace=False)
+    (3): Linear(in_features=4096, out_features=4096, bias=True)
+    (4): ReLU(inplace=True)
+    (5): Dropout(p=0.5, inplace=False)
+    (6): Linear(in_features=4096, out_features=10, bias=True)
+  )
 )
 ```
